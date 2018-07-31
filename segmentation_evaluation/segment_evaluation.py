@@ -65,14 +65,14 @@ for file_path in FILE_pre:
     g = gt_img[:, :, 1]
     r = gt_img[:, :, 2]
 
-    for height in xrange(gt_img.shape[0]):
-        for width in xrange(gt_img.shape[1]):
+    for height in range(gt_img.shape[0]):
+        for width in range(gt_img.shape[1]):
             b = gt_img[height, width, 0]
             g = gt_img[height, width, 1]
             r = gt_img[height, width, 2]
 
             same = 0
-            for counter in xrange(index):
+            for counter in range(index):
                 if array[counter, 0] == r and array[counter, 1] == g and array[counter, 2] == b:
                     same += 1
 
@@ -100,8 +100,8 @@ for file_path in FILE_pre:
 
     print(i)
 
-    for height in xrange(gt_img.shape[0]):
-        for width in xrange(gt_img.shape[1]):
+    for height in range(gt_img.shape[0]):
+        for width in range(gt_img.shape[1]):
             for Input in range(index):
                 if all(gt_img[height, width, (2, 1, 0)] == array[Input, (0, 1, 2)]):
                     for Output in range(index):
