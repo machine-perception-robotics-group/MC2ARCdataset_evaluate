@@ -5,16 +5,17 @@ import cv2
 import glob
 import matplotlib.pyplot as plt
 from pylab import *
+import argparse
 
-##### PLEASE CHANGE ##############################
-# test images dir path
-image_path = "./image/"
+parser = argparse.ArgumentParser()
+parser.add_argument('--image', '-i', type = str, default = './image/', help = 'Path of test images dir')
+parser.add_argument('--teach', '-t', type = str, default = './teach/', help = 'Path of ground truth b-boxes dir')
+parser.add_argument('--result', '-r', type = str, default = './results/', help = 'Path of detection results dir')
+args = parser.parse_args()
 
-# teach b-box (txt) dir path
-teach_path = "./teach/"
-
-# detection result (txt) dir path
-result_path = "./results/"
+image_path = args.image
+teach_path = args.teach
+result_path = args.result
 
 ##### PLEASE CHANGE AS NECESSARY #################
 
@@ -34,7 +35,7 @@ WAITTIME = 0
 LABEL_FLAG = 0
 
 # if your detection results are normalized, set 1
-NORMALIZED = 1
+NORMALIZED = 0
 
 #IOU Threshold
 IOU_THRESH = 0.55
@@ -48,6 +49,8 @@ THRESH = 0.35
 NCLASS = 40
 
 ##################################################
+
+
 
 COLOR_TABLE = [
 [   0,    0,    0],
