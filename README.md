@@ -15,3 +15,4 @@ If arguments is not given, it refers to the default path `(./detect_evaluation/{
 - OpenCV 3.x / 2.x
 - numpy (Recommended version >= 1.10)
 - matplotlib (Recommended version >= 1.4)
+- numba (Recommended version >= 0.30)
