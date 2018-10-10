@@ -8,20 +8,23 @@ import sys
 import numba as nb
 import os
 import color_labels
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--teach', '-t', type = str, default = './label/', help = 'Path of segmentation label dir')
+parser.add_argument('--result', '-r', type = str, default = './results/', help = 'Path of results dir')
+args = parser.parse_args()
 
 # PLEASE CHANGE ##############################################
 
-# Grand truth image's dir path
-gt_path     = "./label/"
-
-# Result image's dir path
-result_path = "./results/"
-
-COLOR_TYPE = "ARC"
+COLOR_TYPE = None
 
 NCLASS = 41
 
 # END ########################################################
+
+gt_path     = args.teach
+result_path = args.result
 
 @nb.jit
 def calcMatrix(matrix, index, gt_img, res_img, color_array):
@@ -111,8 +114,8 @@ def evaluation(matrix, index, gt_files, res_files, color_array):
 
 
 def main():
-    gt_files = glob(os.path.join(gt_path, "*.png"))
-    res_files = glob(os.path.join(result_path, "*.png"))
+    gt_files = sorted(glob(os.path.join(gt_path, "*.png")))
+    res_files = sorted(glob(os.path.join(result_path, "*.png")))
 
     num_gt_files = len(gt_files)
     num_res_files = len(res_files)
@@ -165,6 +168,12 @@ def main():
     if np.isnan(GA) or np.isnan(CA) or np.isnan(MI):
         print("[Warning] Couldn't calculate some acc. Please set [COLOR_TYPE = None] and use color extractor.")
 
+    # file output
+    f = open(os.path.join(result_path, "segment_result.txt"), 'w')
+    f.writelines("Total Result" + '\n')
+    f.writelines("Global Accuracy:" + str(GA * 100) + "%" + '\n')
+    f.writelines("Class Accuracy:" + str(CA * 100) + "%" + '\n')
+    f.writelines("Mean IoU:" + str(MI * 100) + "%" '\n')
 
 if __name__ == '__main__':
     main()
