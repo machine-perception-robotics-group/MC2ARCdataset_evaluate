@@ -270,8 +270,8 @@ def evaluate(file_list):
 
 def main():
     # mkdir for Matching results
-    os.mkdir(result_path + "/matchingResults")
-    os.mkdir(result_path + "/eval")
+    if not os.path.exists(result_path + "/matchingResults"): os.mkdir(result_path + "/matchingResults")
+    if not os.path.exists(result_path + "/eval"): os.mkdir(result_path + "/eval")
 
     # IoU matching
     file_list = glob.glob(result_path + "*.txt")
