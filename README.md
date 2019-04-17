@@ -4,6 +4,8 @@ MC2ARCdataset_evaluate
 http://mprg.jp/en/research/arc_dataset_2017_e
 (JP: http://mprg.jp/research/arc_dataset_2017_j)
 
+If above url is not available, please visit: http://mprg.jp/research/arc_dataset_2017_e
+
 **Note: In `detect_evaluation.py` and `segment_evaluation.py`, the method of giving the path has changed.** It is given as arguments as follows:
 ```
 python detect_evaluation.py --image /path/of/input/images/ --teach /path/of/ground-truth/textfiles/ --result /path/of/ur/results/
